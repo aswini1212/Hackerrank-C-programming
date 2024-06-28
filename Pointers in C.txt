@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+void update(int *a, int *b) {
+    int sum = *a + *b;
+    int diff1 = (*a > *b) ? (*a - *b) : (*b - *a); // Absolute difference
+    int diff2 = sum - 2 * (*b); // Alternate way to calculate difference
+    *a = sum;
+    *b = (diff1 > diff2) ? diff1 : diff2;
+}
+
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+    
+    scanf("%d %d", &a, &b);
+    update(pa, pb);
+    printf("%d\n%d", a, b);
+
+    return 0;
+}

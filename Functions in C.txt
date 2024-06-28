@@ -1,0 +1,37 @@
+#include <stdio.h>
+/*
+Add `int max(int a, int b, int c, int d)` here.
+*/
+int max(int a,int b,int c, int d);
+int main() 
+{
+    int a, b, c, d;
+    int ans=0;
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+    ans = max(a, b, c, d);
+    printf("%d", ans);
+    
+    return 0;
+}
+int max (int a, int b, int c, int d)
+{ int l,i;
+      l=a;
+ 
+
+      if(b>l&&b>c&&b>d)
+      {
+         return b;
+      }
+      else if(c>l&&c>b&&c>d)
+      {
+          return c;
+      }
+      else if(d>l&&d>b&&d>c)
+      {
+          return d;
+      }
+      else 
+       return a;
+  
+    
+}

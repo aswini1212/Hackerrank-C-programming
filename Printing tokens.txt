@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_WORDS 1000  // Maximum number of words to split
+#define MAX_LENGTH 10  // Maximum length of each word
+
+int main() {
+    char str1[1000];         // String input
+    char newString[MAX_WORDS][MAX_LENGTH]; // 2D array to store split strings
+    int i, j, ctr;          // Counters and index variables
+
+    //printf("Enter a string: ");
+    fgets(str1, sizeof(str1), stdin); // Read input string
+
+    j = 0;    // Initialize column index of newString array
+    ctr = 0;  // Initialize word count
+
+    // Loop through each character in the input string
+    for (i = 0; i < strlen(str1); i++) {
+        // If space or newline found, assign NULL into newString[ctr]
+        if (str1[i] == ' ' || str1[i] == '\n') {
+            newString[ctr][j] = '\0'; // Null-terminate the word
+            ctr++;  // Move to the next word
+            j = 0;  // Reset column index to 0 for the next word
+
+            // If the maximum number of words is reached, break out of the loop
+            if (ctr == MAX_WORDS)
+                break;
+        } else {
+            // Store the character into newString
+            newString[ctr][j] = str1[i];
+            j++;  // Move to the next character within the word
+
+            // If the maximum length of a word is reached, truncate it
+            if (j == MAX_LENGTH - 1) {
+                newString[ctr][j] = '\0'; // Null-terminate the word
+                ctr++;  // Move to the next word
+                j = 0;  // Reset column index to 0 for the next word
+
+                // If the maximum number of words is reached, break out of the loop
+                if (ctr == MAX_WORDS)
+                    break;
+            }
+        }
+    }
+
+    //printf("\nStrings or words after split by space or newline are:\n");
+    // Display the split words stored in newString array
+    for (i = 0; i < ctr; i++) {
+        printf("%s\n", newString[i]);
+    }
+
+    return 0;
+}
